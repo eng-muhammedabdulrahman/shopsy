@@ -1,11 +1,16 @@
-import "./App.css";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header/Header";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline text-center">Hello world!</h1>
+    <div className="app">
+      <Routes>
+        <Route path="/" element={<Header />}/>
+        <Route path="*" element={<h1>Page Not Found</h1>}/>
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;

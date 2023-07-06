@@ -11,9 +11,9 @@ const Header = () => {
         <img className="header-logo" src={Logo} alt="logo-img" />
       </Link>
       <div className="header-searsh">
-        <input className="header-searshInput" type="text" />
-        <button className="header-searchIcon">
-          <i class="fa-solid fa-magnifying-glass"></i>
+        <input className="header-searshInput" placeholder="Searsh.." type="text" />
+        <button className="header-searchIcon" type="submit">
+        <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
         </button>
       </div>
       <div className="header-nav">
@@ -35,8 +35,12 @@ const Header = () => {
         </div>
         <Link to="/checkout">
           <div className="header-optionBasket">
-            //icon
-            <span className="header-optionLineTwo header-"></span>
+            <Link to="/basket">
+            <i class="fa-sharp fa-solid fa-basket-shopping" style={{color:"white"}}></i>
+            </Link>
+            <span className="header-optionLineTwo header-basketCount">
+            6
+            </span>
           </div>
         </Link>
       </div>

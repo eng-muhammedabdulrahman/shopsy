@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/logo2.png";
 
 import "./Header.css";
+import { Search } from "@mui/icons-material";
 
 const Header = () => {
   return (

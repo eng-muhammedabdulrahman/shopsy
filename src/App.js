@@ -1,12 +1,27 @@
-import { React, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import { auth } from "./components/firebase";
 import { useAuth } from "./context/GlobalState";
 import Banner from "./components/Banner";
+import axios from "axios";
+import "./components/globals.css";
+import ProductFeed from "./components/ProductFeed";
 
 const App = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://fakestoreapi.com/products")
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+
   const { dispatch } = useAuth();
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -23,6 +38,7 @@ const App = () => {
       }
     });
   }, []);
+
   return (
     <div className="app bg-slate-300">
       <Routes>
@@ -31,7 +47,12 @@ const App = () => {
           element={
             <>
               <Header />
-              <Banner />
+              <main className="max-w-screen-2xl mx-auto">
+                {/* Banner */}
+                <Banner />
+                {/* ProductFeed */}
+                <ProductFeed products={products} />
+              </main>
             </>
           }
         />

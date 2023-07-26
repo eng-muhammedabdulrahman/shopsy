@@ -5,7 +5,7 @@ import img1 from "./assets/banner/img1.jpg";
 import img2 from "./assets/banner/img2.jpg";
 import img3 from "./assets/banner/img3.jpg";
 import img4 from "./assets/banner/img4.jpg";
-import img5 from "./assets/banner/img5.jpg";
+
 
 const Home = () => {
   return (
@@ -30,9 +30,6 @@ const Home = () => {
           </div>
           <div>
             <img loading="lazy" src={img4} alt="banner3" />
-          </div>
-          <div>
-            <img loading="lazy" src={img5} alt="banner3" />
           </div>
         </Carousel>
       </div>

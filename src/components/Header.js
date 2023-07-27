@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "./assets/logo2.png";
 import { useAuth } from "../context/GlobalState";
-import "./globals.css";
+import "../styles/globals.css";
 import {
   MenuIcon,
   SearchIcon,
@@ -32,17 +32,16 @@ const Header = () => {
           </Link>
         </div>
         {/* Search */}
-        <div className="hidden sm:flex items-center h-10 rounded-md flex-grow cursor-pointer bg-yellow-600 hover:bg-yellow-700">
+        <div className="hidden sm:flex items-center h-10 rounded-md flex-grow cursor-pointer bg-yellow-600  ">
           <input
             className="p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4"
             placeholder="Searsh.."
             type="text"
           />
-          <SearchIcon className="h-12 p-4 scale-150" />
+          <SearchIcon className="h-12 p-4 ease-out hover:bg-yellow-600 active:bg-yellow-700 focus:outline-none focus:ring focus:ring-yellow-300 rounded-full scale-150" />
         </div>
         {/* Right */}
         <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
-          
           <Link to={!user && "/login"}>
             <div className="cursor-pointer" onClick={handleAuthentication}>
               <div className="hover:underline">

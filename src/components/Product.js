@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StarIcon } from "@heroicons/react/solid";
 import Currency from "react-currency-formatter";
 import primImg from "./assets/primeImage.png";
-import "./globals.css";
+import "../styles/globals.css";
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;

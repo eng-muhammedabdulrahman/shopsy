@@ -6,10 +6,13 @@ import { auth } from "./components/firebase";
 import { useAuth } from "./context/GlobalState";
 import Banner from "./components/Banner";
 import axios from "axios";
-import "./components/globals.css";
+import "./styles/globals.css";
 import ProductFeed from "./components/ProductFeed";
+import ErrorBoundary from "./components/ErrorBoundary";
+import Footer from "./components/Footer";
 
 const App = () => {
+  // Get api using axios
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios
@@ -22,6 +25,7 @@ const App = () => {
       });
   });
 
+  // Authentication
   const { dispatch } = useAuth();
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -41,33 +45,37 @@ const App = () => {
 
   return (
     <div className="app bg-slate-300">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <main className="max-w-screen-2xl mx-auto">
-                {/* Banner */}
-                <Banner />
-                {/* ProductFeed */}
-                <ProductFeed products={products} />
-              </main>
-            </>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <>
-              <p className="text-3xl font-extrabold p-5 ">Page Not Found</p>
-            </>
-          }
-        />
+      <ErrorBoundary>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <main className="max-w-screen-2xl mx-auto">
+                  {/* Banner */}
+                  <Banner />
+                  {/* ProductFeed */}
+                  <ProductFeed products={products} />
+                </main>
+                <Footer />
+              </>
+            }
+          />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<h1>Page Not Found</h1>} />
-      </Routes>
+          <Route
+            path="*"
+            element={
+              <>
+                <p className="text-3xl font-extrabold p-5 ">Page Not Found</p>
+              </>
+            }
+          />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<h1>Page Not Found</h1>} />
+        </Routes>
+      </ErrorBoundary>
     </div>
   );
 };

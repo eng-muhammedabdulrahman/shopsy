@@ -1,6 +1,6 @@
 import Product from "./Product";
 import imgMain from "./assets/imgMain.jpg";
-import "./globals.css";
+import "../styles/globals.css";
 
 function ProductFeed({ products }) {
   return (

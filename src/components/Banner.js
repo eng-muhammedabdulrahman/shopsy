@@ -5,6 +5,7 @@ import img1 from "./assets/banner/img1.jpg";
 import img2 from "./assets/banner/img2.jpg";
 import img3 from "./assets/banner/img3.jpg";
 import img4 from "./assets/banner/img4.jpg";
+import "../styles/globals.css";
 
 
 const Home = () => {

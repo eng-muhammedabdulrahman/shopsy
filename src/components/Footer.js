@@ -1,14 +1,16 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import Logo from "./assets/logo2.png";
 import { Link } from "react-router-dom";
+import BackToTopButton from "./BackToTopButton"
+
 
 const Footer = () => {
   return (
     <footer>
       <div className=" text-white h-10 text-center pt-2 hover:cursor-pointer bg-slate-700 active:bg-slate-600">
-        <button>Back To Top</button>
+        <BackToTopButton />
       </div>
-      <div className="hidden lg:flex w-full m-auto space-x-20 pl-64 h-72 pt-10 bg-amazon_blue-light">
+      <div className="hidden lg:flex flex-col-4 w-full px-60  items-center space-x-20 h-72 bg-amazon_blue-light">
         <div className="table-cell bg-amazon_blue-light">
           <div className="text-white items-center font-bold text-xl">
             Get to Know Us
@@ -47,15 +49,15 @@ const Footer = () => {
         </div>
       </div>
       <div className="bg-amazon_blue-light border-t border-l-slate-100">
-      <div className="w-full h-20 py-0 bg-amazon_blue-light">
-      <Link to="/">
-        <img
-          className="mt-5 mb-1 object-contain w-40 mr-auto ml-auto"
-          src={Logo}
-          alt="logo-img"
-        />
-      </Link>
-      </div>
+        <div className="w-full h-20 py-0 bg-amazon_blue-light">
+          <Link to="/">
+            <img
+              className="mt-2 mb-1 object-contain w-40 mr-auto ml-auto"
+              src={Logo}
+              alt="logo-img"
+            />
+          </Link>
+        </div>
       </div>
       <div className="bg-amazon_blue h-12 text-white text-center pt-3">
         <p>

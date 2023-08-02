@@ -10,6 +10,8 @@ import "./styles/globals.css";
 import ProductFeed from "./components/ProductFeed";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Footer from "./components/Footer";
+import Checkout from "./components/Checkout";
+import Payment from "./components/Payment";
 
 const App = () => {
   // Get api using axios
@@ -67,11 +69,30 @@ const App = () => {
             path="*"
             element={
               <>
-                <p className="text-3xl font-extrabold p-5 ">Page Not Found</p>
+                <p className="text-4xl font-extrabold p-5 bg-amazon_blue-light text-white w-full h-screen text-center">
+                  Page Not Found
+                </p>
               </>
             }
           />
-
+          <Route
+            path="/checkout"
+            element={
+              <>
+                <Header />
+                <Checkout />
+              </>
+            }
+          />
+          <Route
+            path="/payment"
+            element={
+              <>
+                <Header />
+                <Payment />
+              </>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<h1>Page Not Found</h1>} />
         </Routes>

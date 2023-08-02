@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { StarIcon } from "@heroicons/react/solid";
+import { useAuth } from "../context/GlobalState";
 import Currency from "react-currency-formatter";
 import primImg from "./assets/primeImage.png";
 import "../styles/globals.css";
@@ -7,7 +8,20 @@ import "../styles/globals.css";
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
-function Product({ title, price, description, category, image }) {
+function Product({ id, title, price, description, category, image }) {
+  const { dispatch } = useAuth();
+  const addToBasket = () => {
+    dispatch({
+      type: "ADD_TO_BASKET",
+      item: {
+        id: id,
+        title: title,
+        image: image,
+        price: price,
+        rating: rating,
+      },
+    });
+  };
   const [rating] = useState(
     Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
   );
@@ -25,8 +39,8 @@ function Product({ title, price, description, category, image }) {
         src={image}
         width={200}
         height={200}
-        alt=""
-        objectFit="contain"
+        objectfit="contain"
+        alt="Product-Img"
       />
 
       <h4 className="my-3">{title}</h4>
@@ -35,7 +49,7 @@ function Product({ title, price, description, category, image }) {
         {Array(rating)
           .fill()
           .map((_, i) => (
-            <StarIcon className="h-5 text-yellow-500" />
+            <StarIcon key={i} className="h-5 text-yellow-500" />
           ))}
       </div>
 
@@ -51,9 +65,11 @@ function Product({ title, price, description, category, image }) {
         </div>
       )}
 
-      <button className="mt-auto button">Add To Basket</button>
+      <button className="mt-auto button" onClick={addToBasket}>
+        Add To Basket
+      </button>
     </div>
   );
-};
+}
 
 export default Product;

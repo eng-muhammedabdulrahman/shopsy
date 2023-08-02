@@ -11,7 +11,7 @@ import {
 import { auth } from "./firebase";
 
 const Header = () => {
-  const { user } = useAuth();
+  const { user, basket } = useAuth();
   const handleAuthentication = () => {
     auth.signOut();
   };
@@ -26,7 +26,7 @@ const Header = () => {
               src={Logo}
               width="150"
               height="40"
-              objectFit="contain"
+              objectfit="contain"
               alt="logo-img"
             />
           </Link>
@@ -38,7 +38,7 @@ const Header = () => {
             placeholder="Searsh.."
             type="text"
           />
-          <SearchIcon className="h-12 p-4 ease-out hover:bg-yellow-600 active:bg-yellow-700 focus:outline-none focus:ring focus:ring-yellow-300 rounded-full scale-150" />
+          <SearchIcon className="flex items-center rounded-md px-4 py-2.5 text-xs font-medium h-12 p-4 ease-in-out hover:bg-yellow-700 hover:shadow-lg focus:bg-yellow-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-800 active:shadow-lg" />
         </div>
         {/* Right */}
         <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
@@ -59,10 +59,10 @@ const Header = () => {
             </div>
           </Link>
 
-          <Link to="/basket">
+          <Link to="/Checkout">
             <div className="relative link flex items-center">
               <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold">
-                0
+                {basket?.length}
               </span>
 
               <ShoppingCartIcon className="h-10" />
@@ -79,15 +79,33 @@ const Header = () => {
           <MenuIcon className="h-6 mr-1" />
           All
         </p>
-        <p className="link">Prime Video</p>
-        <p className="link">Shopsy Business</p>
-        <p className="link">Today's Deals</p>
-        <p className="link hidden lg:inline-flex">Electronics</p>
-        <p className="link hidden lg:inline-flex">Food & Grocery</p>
-        <p className="link hidden lg:inline-flex">Prime</p>
-        <p className="link hidden lg:inline-flex">Buy Again</p>
-        <p className="link hidden lg:inline-flex">Shopper Toolkit</p>
-        <p className="link hidden lg:inline-flex">Health & Personal care</p>
+        <Link to="/Prime Video">
+          <p className="link">Prime Video</p>
+        </Link>
+        <Link to="/Shopsy Business">
+          <p className="link">Shopsy Business</p>
+        </Link>
+        <Link to="/Today's Deals">
+          <p className="link">Today's Deals</p>
+        </Link>
+        <Link to="/Electronics">
+          <p className="link hidden lg:inline-flex">Electronics</p>
+        </Link>
+        <Link to="/Food & Grocery">
+          <p className="link hidden lg:inline-flex">Food & Grocery</p>
+        </Link>
+        <Link to="/Prime">
+          <p className="link hidden lg:inline-flex">Prime</p>
+        </Link>
+        <Link to="/Buy Again">
+          <p className="link hidden lg:inline-flex">Buy Again</p>
+        </Link>
+        <Link to="/Shopper Toolkit">
+          <p className="link hidden lg:inline-flex">Shopper Toolkit</p>
+        </Link>
+        <Link to="/Health & Personal care">
+          <p className="link hidden lg:inline-flex">Health & Personal care</p>
+        </Link>
       </div>
     </header>
   );

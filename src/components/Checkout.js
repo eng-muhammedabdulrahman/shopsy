@@ -11,7 +11,7 @@ const Checkout = () => {
     <div className="flex p-5 bg-gray-100 h-max">
       <div className="checkout-left">
         <img
-          className="w-full h-36 mb-2.5 "
+          className="h-36 mb-2.5 "
           src={checkoutImg}
           alt="adsBanner"
         />
@@ -23,7 +23,7 @@ const Checkout = () => {
 
           {basket.length > 0 ? (
             basket.map((item) => (
-              <CheckoutProduct className="flex md:-mt-52 mx-auto flex-row"
+              <CheckoutProduct
                 key={item.id}
                 id={item.id}
                 title={item.title}

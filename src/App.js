@@ -12,6 +12,9 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import Footer from "./components/Footer";
 import Checkout from "./components/Checkout";
 import Payment from "./components/Payment";
+import Orders from "./components/Orders";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 const App = () => {
   // Get api using axios
@@ -29,6 +32,9 @@ const App = () => {
 
   // Authentication
   const { dispatch } = useAuth();
+  const stripePromise = loadStripe(
+    "pk_test_51NaQcHDPyXs5r3q1CqlZoPgTLdn1UVFCwsowawbY5dRyZYaR3SZPgyeaJuSjz3S9yZE3mLbf9LxrY5ntHDHiV2un00oVOPjQOT"
+  );
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -89,7 +95,18 @@ const App = () => {
             element={
               <>
                 <Header />
-                <Payment />
+                <Elements stripe={stripePromise}>
+                  <Payment />
+                </Elements>
+              </>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <>
+                <Header />
+                <Orders />
               </>
             }
           />

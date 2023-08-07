@@ -1,18 +1,54 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { React, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/GlobalState";
 import CheckoutProduct from "./CheckoutProduct";
 import { getBasketTotal } from "../context/AppReducer";
 import CurrencyFormat from "react-currency-format";
-import { CardElement } from "@stripe/react-stripe-js";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import axios from "./axios";
 
 const Payment = () => {
-  const { basket, user } = useAuth();
-  const handleSubmit = (e) => {
-    e.preventDefault ()
-  }
-  const handleChange = () => {
-
+  const { basket, user, dispatch } = useAuth();
+  const [clientSecret, setClientSecret] = useState();
+  const [error, setError] = useState(null);
+  const [disabled, setDisabled] = useState(true);
+  const [succeeded, setSucceeded] = useState(false);
+  const [processing, setProcessing] = useState("");
+  const stripe = useStripe();
+  const elements = useElements();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const getClientSecret = async () => {
+      const response = await axios({
+        method: "post",
+        url: `/payments/create?total= ${getBasketTotal(basket) * 100}`,
+      });
+      setClientSecret(response.data.clientSecret);
+      return response;
+    };
+    getClientSecret();
+  }, [basket]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setProcessing(true);
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then((paymentIntent) => {
+        setSucceeded(true);
+        setError(null);
+        navigate("/orders", { replace: true });
+        dispatch({
+          type: "EMPTY_BASKET",
+        });
+      });
+  };
+  const handleChange = (e) => {
+    setDisabled(e.empty);
+    setError(error ? error.message : "");
   };
   return (
     <div className="bg-white">
@@ -66,7 +102,15 @@ const Payment = () => {
                 thousandSeparator={true}
                 prefix={"£ "}
               />
-              <button type="submit" className=" my-4 w-full button">Buy Now</button>
+              <button
+                type="submit"
+                className=" my-4 w-full button"
+                disabled={processing || disabled || succeeded}
+              >
+                {processing ? <p>Processing</p> : "Buy Now"}
+              </button>
+
+              {error && <div> {error} </div>}
             </form>
           </div>
         </div>

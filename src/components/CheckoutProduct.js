@@ -12,8 +12,8 @@ const CheckoutProduct = ({ id, image, title, price, rating, hiddenButton }) => {
     });
   };
   return (
-    <div className="flex w-full py-3 my-5 bg-white">
-      <img className="object-contain w-44 h-44" src={image} alt="" />
+    <div className="flex  py-3 my-5 bg-white">
+      <img className=" object-contain w-44 h-44 " src={image} alt="" />
       <div className="pl-5">
         <p className="my-3">{title}</p>
         <div className="mb-5">

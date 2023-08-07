@@ -8,7 +8,7 @@ const Subtotal = () => {
   const { basket } = useAuth();
   const navigate = useNavigate();
   return (
-    <div className="felx flex-col md:grid-flow-row justify-between w-72 h-36 p-5 ml-5 bg-gray-100 border border-solid border-gray-300 rounded">
+    <div className="justify-between w-64 h-36 p-5 ml-5 bg-gray-100 border border-solid border-gray-300 rounded">
       <CurrencyFormat
         renderText={(value) => (
           <>
@@ -27,7 +27,7 @@ const Subtotal = () => {
         prefix={"£ "}
       />
       <button
-        className="mx-10 my-4 button"
+        className="m-6 button"
         onClick={() => navigate("/payment")}
       >
         Proceed to Checkout

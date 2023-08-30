@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/shopsy/static/css/main.03cdce00.css",
+    "main.js": "/shopsy/static/js/main.bb75a67c.js",
+    "static/media/img1.jpg": "/shopsy/static/media/img1.71c5f5854e8bbfb52f55.jpg",
+    "static/media/img4.jpg": "/shopsy/static/media/img4.ce40bfeb4d9e7175e931.jpg",
+    "static/media/img3.jpg": "/shopsy/static/media/img3.74be1c1a6ccd7f665db3.jpg",
+    "static/media/img2.jpg": "/shopsy/static/media/img2.140fd210dc747546e457.jpg",
+    "static/media/imgMain.jpg": "/shopsy/static/media/imgMain.5f56fe8eadda3273f290.jpg",
+    "static/media/adsBanner.png": "/shopsy/static/media/adsBanner.eafc34eccdda73fc8bd4.png",
+    "static/media/logo2.png": "/shopsy/static/media/logo2.4d0748fcd4122fdbc4e0.png",
+    "static/media/logo1.png": "/shopsy/static/media/logo1.6b5b9dc3f2c0c5764b54.png",
+    "static/media/primeImage.png": "/shopsy/static/media/primeImage.a5c869402a7c4629080d.png",
+    "index.html": "/shopsy/index.html",
+    "main.03cdce00.css.map": "/shopsy/static/css/main.03cdce00.css.map",
+    "main.bb75a67c.js.map": "/shopsy/static/js/main.bb75a67c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.03cdce00.css",
+    "static/js/main.bb75a67c.js"
+  ]
+}

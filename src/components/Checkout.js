@@ -1,51 +1,47 @@
-import React from "react";
-import { useAuth } from "../context/GlobalState";
-import checkoutImg from "./assets/adsBanner.png";
 import CheckoutProduct from "./CheckoutProduct";
-import Subtotal from "./Subtotal";
-import "../styles/globals.css";
+import checkoutImg from "./assets/adsBanner.png";
+import { useAuth } from "../context/GlobalState";
 
-const Checkout = () => {
+function Checkout() {
   const { user, basket } = useAuth();
   return (
-    <div className="flex p-5 bg-gray-100 h-max">
-      <div className="checkout-left">
-        <img
-          className="h-36 mb-2.5 "
-          src={checkoutImg}
-          alt="adsBanner"
-        />
-        <div>
-          <h3 className="text-lg font-bold "> Hello, {user?.email}</h3>
-          <h2 className="ml-6 p-2.5 text-4xl font-bold">
-            Your shopping Basket
-          </h2>
+    <div className="bg-gray-100">
+      <main className="container mx-auto p-1">
+        {/* Left */}
+        <div className="flex-grow m-5 shadow-sm">
+          <img
+            className="w-full mb-2 object-contain"
+            src={checkoutImg}
+            alt="adsBanner"
+          />
+          <div className="flex flex-col p-5 space-y-10 bg-white">
+            <h1 className="text-3xl border-b pb-4">
+              {basket.lenght === 0
+                ? "Your Shopsy Basket is empty."
+                : "Shopping Basket"}
+            </h1>
 
-          {basket.length > 0 ? (
-            basket.map((item) => (
+            {basket.map((item, i) => (
               <CheckoutProduct
-                key={item.id}
+                key={i}
                 id={item.id}
                 title={item.title}
-                image={item.image}
                 price={item.price}
                 rating={item.rating}
+                description={item.description}
+                category={item.category}
+                image={item.image}
+                hasPrime={item.hasPrime}
               />
-            ))
-          ) : (
-            <p className="m-5 text-lg font-semibold border border-solid bg-red-200 p-5 text-center">
-              You have no items in your basket. To buy one or more items, click
-              "Add to basket".
-            </p>
-          )}
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div className="checkout-right">
-        <Subtotal />
-      </div>
+        {/* Right */}
+        <div></div>
+      </main>
     </div>
   );
-};
+}
 
 export default Checkout;

@@ -1,20 +1,20 @@
 import { React, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Login from "./components/Login";
 import { auth } from "./components/firebase";
 import { useAuth } from "./context/GlobalState";
+// import { loadStripe } from "@stripe/stripe-js";
+// import { Elements } from "@stripe/react-stripe-js";
+import Header from "./components/Header";
+import Login from "./components/Login";
 import Banner from "./components/Banner";
-import axios from "axios";
-import "./styles/globals.css";
 import ProductFeed from "./components/ProductFeed";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Footer from "./components/Footer";
 import Checkout from "./components/Checkout";
-import Payment from "./components/Payment";
+// import Payment from "./components/Payment";
 import Orders from "./components/Orders";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+import axios from "axios";
+import "./styles/globals.css";
 
 const App = () => {
   // Get api using axios
@@ -32,9 +32,9 @@ const App = () => {
 
   // Authentication
   const { dispatch } = useAuth();
-  const stripePromise = loadStripe(
-    "pk_test_51NaQcHDPyXs5r3q1CqlZoPgTLdn1UVFCwsowawbY5dRyZYaR3SZPgyeaJuSjz3S9yZE3mLbf9LxrY5ntHDHiV2un00oVOPjQOT"
-  );
+  // const stripePromise = loadStripe(
+  //   "pk_test_51NaQcHDPyXs5r3q1CqlZoPgTLdn1UVFCwsowawbY5dRyZYaR3SZPgyeaJuSjz3S9yZE3mLbf9LxrY5ntHDHiV2un00oVOPjQOT"
+  // );
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -90,7 +90,7 @@ const App = () => {
               </>
             }
           />
-          <Route
+          {/* <Route
             path="/payment"
             element={
               <>
@@ -100,7 +100,7 @@ const App = () => {
                 </Elements>
               </>
             }
-          />
+          /> */}
           <Route
             path="/orders"
             element={

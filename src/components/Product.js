@@ -19,6 +19,9 @@ function Product({ id, title, price, description, category, image }) {
         image: image,
         price: price,
         rating: rating,
+        description: description,
+        category: category,
+        hasPrime: hasPrime,
       },
     });
   };

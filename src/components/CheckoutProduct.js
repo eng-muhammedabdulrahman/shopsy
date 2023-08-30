@@ -1,9 +1,20 @@
 import React from "react";
-import Currency from "react-currency-formatter";
 import { StarIcon } from "@heroicons/react/solid";
+import Currency from "react-currency-formatter";
+import primImg from "./assets/primeImage.png";
 import { useAuth } from "../context/GlobalState";
 
-const CheckoutProduct = ({ id, image, title, price, rating, hiddenButton }) => {
+
+function CheckoutProduct({
+  id,
+  title,
+  price,
+  description,
+  category,
+  image,
+  rating,
+  hasPrime,
+}) {
   const { dispatch } = useAuth();
   const removeFromBasket = () => {
     dispatch({
@@ -11,14 +22,14 @@ const CheckoutProduct = ({ id, image, title, price, rating, hiddenButton }) => {
       id: id,
     });
   };
+
   return (
-    <div className="flex  py-3 my-5 bg-white">
-      <img className=" object-contain w-44 h-44 " src={image} alt="" />
-      <div className="pl-5">
-        <p className="my-3">{title}</p>
-        <div className="mb-5">
-          <Currency quantity={price} currency="EGP" />
-        </div>
+    <div className="grid grid-cols-5">
+      <img src={image} width="200" height="200" objectfit="contain" alt="" />
+
+      {/* Middle */}
+      <div className="col-span-3 mx-5">
+        <p className="font-semibold">{title}</p>
         <div className="flex">
           {Array(rating)
             .fill()
@@ -26,14 +37,32 @@ const CheckoutProduct = ({ id, image, title, price, rating, hiddenButton }) => {
               <StarIcon key={i} className="h-5 text-yellow-500" />
             ))}
         </div>
-        {!hiddenButton && (
-          <button className="button" onClick={removeFromBasket}>
-            Remove from Basket
-          </button>
+        <p className="text-xs my-2 line-clamp-3 text-justify">{description}</p>
+        <div className="font-semibold">
+          <Currency quantity={price} currency="EGP" />
+        </div>
+
+        {hasPrime && (
+          <div className="flex items-center space-x-2">
+            <img
+              loading="lazy"
+              className="w-12"
+              src={primImg}
+              alt="PrimeImage"
+            />
+            <p className="text-xs text-gray-500">Free Next-day Delivery</p>
+          </div>
         )}
+      </div>
+
+      {/* Right add/remove buttons */}
+      <div className="flex flex-col space-y-2 my-auto justify-self-end">
+        <button className="button " onClick={removeFromBasket}>
+          Remove from Basket
+        </button>
       </div>
     </div>
   );
-};
+}
 
 export default CheckoutProduct;
